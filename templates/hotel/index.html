@@ -1,0 +1,329 @@
+{% extends 'hotel/base.html' %}
+{% block body %}
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+    crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+    integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+    crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+    integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+    crossorigin="anonymous"></script>
+<script>
+    $(document).ready(function () {
+        $('.getItbtn').click(function () {
+            $('.custom-bottom-stickybar').hide();
+        });
+    });
+</script>
+<script>
+    function myFunction() {
+        // Get the snackbar DIV
+        var x = document.getElementById("snackbar");
+
+        // Add the "show" class to DIV
+        x.className = "show";
+
+        // After 3 seconds, remove the show class from DIV
+        setTimeout(function () { x.className = x.className.replace("show", ""); }, 3000);
+    }
+</script>
+<style>
+    h1 {
+        text-align: center;
+    }
+
+    * {
+        margin: 0px;
+        padding: 0px;
+    }
+
+    .row {
+        margin-left: 0px;
+        margin-right: 0px;
+    }
+
+    p {
+        text-align: center;
+    }
+
+    @media (min-width: 992px) {
+        .col-lg-4 {
+            -ms-flex: 0 0 33.333333%;
+            flex: 0 0 33.333333%;
+            max-width: 25%;
+        }
+    }
+
+    .container {
+        background-color: cornsilk;
+    }
+
+    .con {
+        height: 800px;
+        position: relative;
+        text-align: center;
+        color: white;
+    }
+
+    .text-block {
+        position: absolute;
+        bottom: 20px;
+        right: 20px;
+        background-color: black;
+        color: white;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    .text-blocks {
+        position: absolute;
+        background-color: black;
+        color: white;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        padding-left: 6px;
+        padding-right: 6px;
+        bottom: 100px;
+        right: 20px;
+        height: 50px;
+    }
+
+    #snackbar {
+        visibility: hidden;
+        /* Hidden by default. Visible on click */
+        min-width: 250px;
+        /* Set a default minimum width */
+        margin-left: -125px;
+        /* Divide value of min-width by 2 */
+        background-color: #333;
+        /* Black background color */
+        color: #fff;
+        /* White text color */
+        text-align: center;
+        /* Centered text */
+        border-radius: 2px;
+        /* Rounded borders */
+        padding: 16px;
+        /* Padding */
+        position: fixed;
+        /* Sit on top of the screen */
+        z-index: 1;
+        /* Add a z-index if needed */
+        left: 50%;
+        /* Center the snackbar */
+        bottom: 30px;
+        /* 30px from the bottom */
+    }
+
+    /* Show the snackbar when clicking on a button (class added with JavaScript) */
+    #snackbar.show {
+        visibility: visible;
+        /* Show the snackbar */
+        /* Add animation: Take 0.5 seconds to fade in and out the snackbar.
+  However, delay the fade out process for 2.5 seconds */
+        -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+        animation: fadein 0.5s, fadeout 0.5s 2.5s;
+    }
+
+    /* Animations to fade the snackbar in and out */
+    @-webkit-keyframes fadein {
+        from {
+            bottom: 0;
+            opacity: 0;
+        }
+
+        to {
+            bottom: 30px;
+            opacity: 1;
+        }
+    }
+
+    @keyframes fadein {
+        from {
+            bottom: 0;
+            opacity: 0;
+        }
+
+        to {
+            bottom: 30px;
+            opacity: 1;
+        }
+    }
+
+    @-webkit-keyframes fadeout {
+        from {
+            bottom: 30px;
+            opacity: 1;
+        }
+
+        to {
+            bottom: 0;
+            opacity: 0;
+        }
+    }
+
+    @keyframes fadeout {
+        from {
+            bottom: 30px;
+            opacity: 1;
+        }
+
+        to {
+            bottom: 0;
+            opacity: 0;
+        }
+    }
+
+    .custom-image img {
+        width: 80px;
+        height: 80px;
+    }
+
+    .custom-feature ul {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    li {
+        padding: 5px;
+    }
+
+    .custom-booking-wrapper {
+        height: 91px;
+    }
+
+    .custom-bottom-stickybar {
+        position: fixed;
+        z-index: 9999;
+        bottom: 0;
+        left: 0;
+        background: rgb(44, 43, 43);
+        color: #fff;
+        width: 100%;
+        height: 80px;
+        text-align: center;
+        padding: 0 15px;
+    }
+
+    button {
+        border-radius: 9px;
+        background-color: chocolate;
+    }
+
+    .custom-bottom-stickybar {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    a {
+        color: cornsilk;
+    }
+</style>
+{% load static %}
+<div class="custom-booking-wrapper">
+    <div class="container">
+        <div class="cusom-inner-wrapper">
+            <div class="custom-feature">
+                <ul style="list-style-type:none;">
+                    <li><span class="custom-image"><img
+                                src="//cdn-3.convertexperiments.com/uf/1002628/1002351/1562859545payat-hotel.png"></span><span
+                            class="custom-text"><strong>Pay at Hotel</strong> </span></li>
+                    <li><span class="custom-image"><img
+                                src="//cdn-3.convertexperiments.com/uf/1002628/1002351/1562917874nohiddencost.png"></span><span
+                            class="custom-text"><strong>No Hidden Charges</strong></span></li>
+                    <li><span class="custom-image"><img
+                                src="//cdn-3.convertexperiments.com/uf/1002628/10021077/1571319398bestbrand-icon.png"
+                                alt="direct rates"></span><span class="custom-text"><strong>Exclusive
+                                Offers</strong></span></li>
+                    <li class="o_taj_incirle"><span class="custom-image"><img
+                                src="//cdn-3.convertexperiments.com/uf/1002628/10024879/15749318381571319370tajinner.png"
+                                alt="tic rewards"></span><span class="custom-text"><strong>Member
+                                Rewards</strong></span></li>
+                    <li><span class="custom-image"><img
+                                src="//cdn-3.convertexperiments.com/uf/1002628/1002351/1562670338wifi-icon.png"></span><span
+                            class="custom-text"><strong>Wifi Access</strong></span></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="con">
+    <img src="{% static 'as.jpg' %}">
+    <div class="text-block">
+        <h4>HBMS</h4>
+        <p>Affordable Bookings....</p>
+    </div>
+    <div class="text-blocks">
+        <!-- Use a button to open the snackbar -->
+        <button onclick="myFunction()">Before Booking Click Here</button>
+        <!-- The actual snackbar -->
+        <div id="snackbar">Adhar Card is mandatory at the time of checkin</div>
+    </div>
+</div>
+<div class="container">
+    <h1 style="text-decoration: underline;">Our Services</h1>
+    <div class="row">
+        {% for i in m %}
+        <div class="col-lg-4 mt-2">
+            <div style="height: 150px; width: 150px; padding-left:50px ;">
+                <img src="static/i.jpg">
+            </div>
+            <h3 style="display: flex; justify-content: center; align-items: center;" class="mt-2">{{i.name}}</h3>
+            <p class="mt-1">{{i.description}} </p>
+        </div><!-- /.col-lg-4 -->
+        {% endfor %}
+    </div>
+</div>
+<div class="containe text-center">
+    <div id="recipeCarousel" class="carousel slide w-100" data-ride="carousel">
+        <div class="carousel-inner w-100" role="listbox">
+            <div class="carousel-item row no-gutters active">
+                <div class="col-3 float-left"><img class="img-fluid"
+                        src="https://images.unsplash.com/photo-1598932982787-f54572e6cde4?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=200&ixid=eyJhcHBfaWQiOjF9&ixlib=rb-1.2.1&q=80&w=350">
+                </div>
+                <div class="col-3 float-left"><img class="img-fluid"
+                        src="https://images.unsplash.com/photo-1586114660110-6ee69267d936?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=200&ixid=eyJhcHBfaWQiOjF9&ixlib=rb-1.2.1&q=80&w=350">
+                </div>
+                <div class="col-3 float-left"><img class="img-fluid"
+                        src="https://images.unsplash.com/photo-1557436070-30ee41ca6222?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=200&ixid=eyJhcHBfaWQiOjF9&ixlib=rb-1.2.1&q=80&w=350">
+                </div>
+                <div class="col-3 float-left"><img class="img-fluid"
+                        src="https://images.unsplash.com/photo-1532879355185-1e173cf56dcc?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=200&ixid=eyJhcHBfaWQiOjF9&ixlib=rb-1.2.1&q=80&w=350">
+                </div>
+            </div>
+            <div class="carousel-item row no-gutter">
+                <div class="col-3 float-left"><img class="img-fluid"
+                        src="https://images.unsplash.com/photo-1538879759918-c5d4066d76ab?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=200&ixid=eyJhcHBfaWQiOjF9&ixlib=rb-1.2.1&q=80&w=350">
+                </div>
+                <div class="col-3 float-left"><img class="img-fluid"
+                        src="https://images.unsplash.com/photo-1502491759181-ffa0aead0076?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=200&ixid=eyJhcHBfaWQiOjF9&ixlib=rb-1.2.1&q=80&w=350">
+                </div>
+                <div class="col-3 float-left"><img class="img-fluid"
+                        src="https://images.unsplash.com/photo-1560160609-76bece30310c?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=200&ixid=eyJhcHBfaWQiOjF9&ixlib=rb-1.2.1&q=80&w=350">
+                </div>
+                <div class="col-3 float-left"><img class="img-fluid"
+                        src="https://images.unsplash.com/photo-1597400234087-94b517999c0f?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=200&ixid=eyJhcHBfaWQiOjF9&ixlib=rb-1.2.1&q=80&w=350">
+                </div>
+            </div>
+        </div>
+        <a class="carousel-control-prev" href="#recipeCarousel" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#recipeCarousel" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+</div>
+<div class="custom-bottom-stickybar">
+    <div class="innerDv">
+        <p>To help personalise content, tailor your experience and help us improve our services, HBMS.com uses
+            cookies. By navigating our site, you agree to allow us to use cookies. <button><a class="getItbtn"
+                    href="#">Ok, continue</a></button></p>
+    </div>
+</div>
+{% endblock body %}

@@ -1,0 +1,20 @@
+{% extends 'hotel/base.html' %}
+{% block body %}
+<style>
+    .container{
+      display: flex;
+      flex-wrap: wrap;
+      height: 600px;
+      width: 950px;
+    }
+    img:hover{
+      opacity: 0.6;
+    }
+</style>
+<h1 style="text-align: center; text-decoration: underline;">Gallery</h1>
+<div class="container">
+{% for i in pic %}
+<img src='/media/{{i.image}}' class="im" width="300px" height="296px">
+{% endfor %}
+</div>
+{% endblock body %}

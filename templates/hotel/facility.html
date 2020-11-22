@@ -1,0 +1,9 @@
+{% extends 'hotel/base.html' %}
+{%load static%}
+{% block body%}
+{% for i in pm%}
+<img src="{% static 'pic4.jpg' %}"/><br>
+{{i.name}}<br>
+{{i.description}}<br>
+{% endfor %}
+{% endblock body%}

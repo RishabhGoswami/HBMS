@@ -1,0 +1,172 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <!-- <link rel="stylesheet" href="{% static 'css/main.css' %}" type="text/css"> -->
+    <title>Hotel Booking Management System</title>
+    <style>
+        * {
+            padding: 0px;
+            margin: 0px;
+        }
+
+        .dropdown-item:hover {
+            color: rgb(236, 252, 17);
+            background-color: brown;
+        }
+
+        .footer {
+            height: 30px;
+            background-color: rgb(37, 172, 250);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .scrollToTop {
+            background: url('static/top.jpg') no-repeat center center #f5f1f1;
+            width: 70px;
+            height: 70px;
+            position: fixed;
+            right: 10px;
+            bottom: 10px;
+            border-radius: 5px;
+            line-height: 70px;
+            text-indent: -999999px;
+            z-index: 60;
+        }
+
+        .l a {
+            /* color: #896633; */
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="l"><a class="scrollToTop" href="#" style="display: block;"></a></div>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="/" style="font-size: xx-large; color: #f3f1e9; font-style: italic;">HBMS</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'about' %}"
+                        style="color: rgb(236, 252, 17) ; font-size: 20px;">AboutUs</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'contactlist' %}"
+                        style="color: rgb(236, 252, 17) ; font-size: 20px;">Queries</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'gallery' %}"
+                        style="color: rgb(236, 252, 17) ; font-size: 20px;">Gallery</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href='{% url "facility" %}'
+                        style="color: rgb(236, 252, 17) ; font-size: 20px;">Facilities</a>
+                </li>
+                {% if  not user.is_authenticated %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'login'%}"
+                        style="color: rgb(236, 252, 17) ; font-size: 20px;">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'register'%}"
+                        style="color: rgb(236, 252, 17) ; font-size: 20px;">Register</a>
+                </li>
+
+                {% endif %}
+                {% if user.is_authenticated %}
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                        style="color: rgb(236, 252, 17) ; font-size: 20px;">
+                        Rooms
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        {% for i in papa %}
+                        <a class="dropdown-item" href="{% url 'categorydetail' i.id %}">{{i.name}}</a>
+                        <div class="dropdown-divider"></div>
+                        {% endfor %}
+                    </div>
+                </li>
+                {% endif %}
+                {% if user.is_authenticated %}
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                        style="color: rgb(236, 252, 17) ; font-size: 20px;">
+                        My Account
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="{% url 'see' 'a[0].userid' %}">My Bookings</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="{% url 'password_reset'%}">Change Password</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="{% url 'logout'%}">Logout</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="{% url 'book'%}">Book</a>
+                    </div>
+                </li>
+                {% endif %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'seequeries' %}"
+                        style="color: rgb(236, 252, 17) ; font-size: 20px;">Your Queries</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <nav class="navbar navbar-expand-lg navbar-light font-weight-bold" style="background-color:#ffdb4d">
+        <a class="navbar-brand mb-0 h1" href="/">HBMS</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Rooms
+                    </a>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'about' %}"
+                            style="color: rgb(236, 252, 17) ; font-size: 20px;">AboutUs</a>
+                    </li>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        {% for i in papa %}
+                        <a class="dropdown-item" href="{% url 'categorydetail' i.id %}">{{i.name}}</a>
+                        <div class="dropdown-divider"></div>
+                        {% endfor %}
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
